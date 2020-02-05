@@ -1,7 +1,7 @@
 #ifndef BinaryTree_h
 #define BinaryTree_h
 
-class BinarySearchTree{
+class BST{
 public:
     virtual void preorderTraversal()=0;
     virtual void add(int data)=0;
