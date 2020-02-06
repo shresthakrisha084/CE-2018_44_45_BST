@@ -1,12 +1,12 @@
-#include "BinaryTree.h"
-#define Max_SIZE 1000
+#include "BST.h"
+#define MAX_SIZE 1000
 
-class ArrayBST::public BST
-{
+class ArrayBST:public BST{
 	public:
-		virtual void add(int data);
-			virtual void preorder traversal();
-			virtual	bool search();
+		void add(int data);
+		void preorderTraversal();
+		bool search();
+	
 	private:
 		int data[MAX_SIZE];
 };
