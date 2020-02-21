@@ -9,7 +9,7 @@ public:
     virtual bool search(int data) = 0;
 
     virtual int min() = 0;
-    virtual int max() = 0;virtual 
+    virtual int max() = 0; 
     virtual void inordertraversal() = 0;
     virtual void deleteitem(int data) = 0;
 
