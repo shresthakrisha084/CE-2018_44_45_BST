@@ -19,6 +19,7 @@ int main()
 
     LinkedBST lBST; //creating Linked BST instance
     //add
+    std::cout<<"\nAdding data to tree.\n";
     lBST.addData(55);
     lBST.addData(122);
     lBST.addData(136);
@@ -36,12 +37,13 @@ int main()
     std::cout << "\nInorderTraversal: ";
     lBST.inorderTraversal();
 
+    std::cout<<"\n\nDeleing data from tree.\n";
     //let us delete four datas corresponding to
     // node with null, left, right, both childs
-    lBST.deleteData(122); //both chilren
-    lBST.deleteData(136); //left child only after deleting 122
-    lBST.deleteData(33);  //right child only
-    lBST.deleteData(47);  //no child
+    lBST.deleteData(55); //both chilren
+    // lBST.deleteData(136); //left child only after deleting 122
+    // lBST.deleteData(33);  //right child only
+    // lBST.deleteData(47);  //no child
 
     //traverse
     std::cout << "\nPreorderTraversal: ";

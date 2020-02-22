@@ -9,15 +9,15 @@ class ArrayBST : public BST
 public:
 	ArrayBST();
 	~ArrayBST();
-	void add(int data);
-	void deleteitem(int data);
+	void addData(int data);
+	void deleteData(int data);
 	
 	void preordertraversal(int index);
 	void preorderTraversal();
 	
 	bool search(int data);
 	
-	void inordertraversal(); 
+	void inorderTraversal(); 
 	void inorder_traversal(int index);
     
 	int get_left_child(int index);

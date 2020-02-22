@@ -34,56 +34,61 @@ void LinkedBST::deleteData(int userData)
     deleteNode(root, userData);
 }
 
-void LinkedBST::deleteNode(Node *&root, int userData)
+Node *LinkedBST::deleteNode(Node *&tempRoot, int userData)
 {
     //condition when root is null ie no root exists
-    if (root == NULL)
+    if (tempRoot == NULL)
+    {
         std::cout << "Error: root empty";
+        return tempRoot;
+    }
     //condition when root is not null ie a root exists
     //recursive calls for getting to the node to be deleted
     //when userdata is less than root data
-    if (root->data > userData)
+    if (tempRoot->data > userData)
     {
-        this->root = root->left;
-        deleteNode(root, userData);
+        tempRoot->left = deleteNode(tempRoot->left, userData);
+        return tempRoot;
     }
     //when userdata is greater than root data
-    else if (root->data < userData)
+    else if (tempRoot->data < userData)
     {
-        this->root = root->right;
-        deleteNode(root, userData);
+        tempRoot->right = deleteNode(tempRoot->right, userData);
+        return tempRoot;
     }
     //when the node to be deleted is found ie user data = root data
-
     // If one of the children is empty
-    if (root->left == NULL)
+    if (tempRoot->left == NULL)
     {
-        Node *temp = root->right;
-        delete root;
+        Node *temp = tempRoot->right;
+        delete tempRoot;
+        return temp;
     }
-    else if (root->right == NULL)
+    else if (tempRoot->right == NULL)
     {
-        Node *temp = root->left;
-        delete root;
+        Node *temp = tempRoot->left;
+        delete tempRoot;
+        return temp;
     }
     // If both children exist
     else
     {
-        Node *succParent = root->right;
+        Node *predecessor = tempRoot->right;
         // Find successor
-        Node *succ = root->right;
-        while (succ->left != NULL)
+        Node *successor = tempRoot->right;
+        
+        while (successor->left != NULL)
         {
-            succParent = succ;
-            succ = succ->left;
+            predecessor = successor;
+            successor = successor->left;
         }
-        // Delete successor. Since successor is always left child of its parent
-        // we can safely make successor's right child as left of its parent.
-        succParent->left = succ->right;
+        // Delete successor. Since successor is always left child of its parent, we can safely make successor's right child as left of its parent.
+        predecessor->left = successor->right;
         // Copy Successor Data to root
-        root->data = succ->data;
+        tempRoot->data = successor->data;
         // Delete Successor and return root
-        delete succ;
+        delete successor;
+        return tempRoot;
     }
 }
 

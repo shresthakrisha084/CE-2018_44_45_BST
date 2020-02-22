@@ -11,7 +11,7 @@ using namespace std;
  ArrayBST::~ArrayBST(){
  } 
  
- void ArrayBST::add(int data){
+ void ArrayBST::addData(int data){
  	
  		if(this->array[0]==0)
 		{
@@ -58,7 +58,7 @@ void ArrayBST :: preordertraversal(int index){
     
 }
 
-void ArrayBST::inordertraversal(){
+void ArrayBST::inorderTraversal(){
 	int i = 1;
 	cout<<"The in-order tranversal of the tree is ";
 	inorder_traversal(get_left_child(i));
@@ -92,7 +92,7 @@ int ArrayBST :: get_right_child(int index){
 
 
 
-void ArrayBST::deleteitem(int data){
+void ArrayBST::deleteData(int data){
 	int left_subtree, right_subtree;
 	bool value_found = false;
 	for(int i=1;i<20;i++){
@@ -182,27 +182,27 @@ int ArrayBST::min(){
  int main(){
 
 ArrayBST a;
-	a.add(10);	
-	a.add(13);
-	a.add(5);
-	a.add(3);
-	a.add(6);
-	a.add(11);
-	a.add(23);
-	a.add(2);
-	a.add(4);	
+	a.addData(10);	
+	a.addData(13);
+	a.addData(5);
+	a.addData(3);
+	a.addData(6);
+	a.addData(11);
+	a.addData(23);
+	a.addData(2);
+	a.addData(4);	
 	if(a.search(3)){
 		cout<<"searched data 3 is in the BST."<<endl;
 	}
 	a.preorderTraversal();
-	a.inordertraversal();
+	a.inorderTraversal();
 	
 	cout<<"The maximum value in the tree is "<<a.max()<<endl;
 	cout<<"The minimum value in the tree is "<<a.min()<<endl;
-	a.deleteitem(11);
+	a.deleteData(11);
 	a.preorderTraversal();
-	a.deleteitem(23);
-	a.inordertraversal();
+	a.deleteData(23);
+	a.inorderTraversal();
 	cout<<endl;
 	return 0;
 }

@@ -51,7 +51,7 @@ public:
 	//takes data by user to delete from the tree
 	void deleteData(int userData);
 	//deletes the node from the tree and replaces with successor
-	void deleteNode(Node *&root, int userData);
+	Node *deleteNode(Node *&tempRoot, int userData);
 	//traverses the data in pre order
 	void preorderTraversal();
 	//traverses the data in post order
