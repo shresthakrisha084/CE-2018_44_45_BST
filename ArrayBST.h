@@ -1,25 +1,33 @@
-#ifndef ArrayBST_h
-#define ArrayBST_h
 
 #include "BST.h"
+#include<iostream>
 
-#define MAX_SIZE 20
+
 
 class ArrayBST : public BST
 {
 public:
+	ArrayBST();
+	~ArrayBST();
 	void add(int data);
+	void deleteitem(int data);
+	
+	void preordertraversal(int index);
 	void preorderTraversal();
+	
 	bool search(int data);
-	void inordertraversal() = 0;
-    void deleteitem(int data) = 0;
-	int minimum()=0;
-	int maximum()=0;
-
-
-
+	
+	void inordertraversal(); 
+	void inorder_traversal(int index);
+    
+	int get_left_child(int index);
+    int get_right_child(int index);
+    
+	int min();
+	int max();
+	
 private:
-	int element[MAX_SIZE];
+	int array[20];
 };
 
-#endif
+
