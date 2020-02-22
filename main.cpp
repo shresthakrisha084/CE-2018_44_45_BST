@@ -1,5 +1,5 @@
 #include "LinkedBST.cpp"
-// #include "ArrayBST.h"
+#include "ArrayBST.cpp"
 
 int main()
 {
@@ -19,7 +19,7 @@ int main()
 
     LinkedBST lBST; //creating Linked BST instance
     //add
-    std::cout<<"\nAdding data to tree.\n";
+    std::cout << "\nAdding data to tree.\n";
     lBST.addData(55);
     lBST.addData(122);
     lBST.addData(136);
@@ -37,13 +37,13 @@ int main()
     std::cout << "\nInorderTraversal: ";
     lBST.inorderTraversal();
 
-    std::cout<<"\n\nDeleing data from tree.\n";
+    std::cout << "\n\nDeleing data from tree.\n";
     //let us delete four datas corresponding to
     // node with null, left, right, both childs
-    lBST.deleteData(55); //both chilren
-    // lBST.deleteData(136); //left child only after deleting 122
-    // lBST.deleteData(33);  //right child only
-    // lBST.deleteData(47);  //no child
+    lBST.deleteData(55);  //both chilren
+    lBST.deleteData(136); //left child only after deleting 122
+    lBST.deleteData(33);  //right child only
+    lBST.deleteData(47);  //no child
 
     //traverse
     std::cout << "\nPreorderTraversal: ";
@@ -74,6 +74,52 @@ int main()
     std::cout << "\n";
     std::cout << "\nMinimum sized data in tree:" << lBST.min(); //min
     std::cout << "\nMaximum sized data in tree:" << lBST.max(); //max
+
+    std::cout << "\n...................................................................................\n";
+
+    std::cout
+        << "\n\tBinary Search Tree as Array\n"
+        << "-------------------------------------------------\n";
+
+    ArrayBST a;
+    //add
+    std::cout << "\nAdding data to tree.\n";
+    a.addData(55);
+    a.addData(122);
+    a.addData(136);
+    a.addData(21);
+    a.addData(11);
+    a.addData(33);
+    a.addData(47);
+    a.addData(111);
+
+    // lets us assume the following tree
+    /*
+                     55
+                  /      \
+                21        122
+              /   \       /  \
+            11     33   111   136
+                    \    
+                     47
+    */
+
+    if (a.search(3))
+    {
+        std::cout << "\nsearched data 3 is in the BST." << endl;
+    }
+    a.preorderTraversal();
+    a.inorderTraversal();
+
+    std::cout << "The maximum value in the tree is " << a.max() << endl;
+    std::cout << "The minimum value in the tree is " << a.min() << endl;
+
+    a.deleteData(11);
+    a.preorderTraversal();
+    
+    a.deleteData(23);
+    a.inorderTraversal();
+    std::cout << endl;
 
     return 0;
 }
