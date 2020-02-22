@@ -7,16 +7,15 @@ LinkedBST::LinkedBST()
     root = NULL;
 }
 
-//add data
-void LinkedBST::add(int dataUser)
+void LinkedBST::addData(int userData)
 {
-    add(root, dataUser);
+    addNode(root, userData);
 }
 
-void LinkedBST::add(Node *&root, int dataUser)
+void LinkedBST::addNode(Node *&root, int userData)
 {
     Node *newNode = new Node();
-    newNode->data = dataUser;
+    newNode->data = userData;
     //condition when root is null ie no root exists
     if (root == NULL)
     {
@@ -30,32 +29,88 @@ void LinkedBST::add(Node *&root, int dataUser)
     }
 }
 
-//search
-bool LinkedBST::search(int dataUser)
+void LinkedBST::deleteData(int userData)
 {
-    return find(root, dataUser);
+    deleteNode(root, userData);
+}
+
+void LinkedBST::deleteNode(Node *&root, int userData)
+{
+    //condition when root is null ie no root exists
+    if (root == NULL)
+        std::cout << "Error: root empty";
+    //condition when root is not null ie a root exists
+    //recursive calls for getting to the node to be deleted
+    //when userdata is less than root data
+    if (root->data > userData)
+    {
+        this->root = root->left;
+        deleteNode(root, userData);
+    }
+    //when userdata is greater than root data
+    else if (root->data < userData)
+    {
+        this->root = root->right;
+        deleteNode(root, userData);
+    }
+    //when the node to be deleted is found ie user data = root data
+
+    // If one of the children is empty
+    if (root->left == NULL)
+    {
+        Node *temp = root->right;
+        delete root;
+    }
+    else if (root->right == NULL)
+    {
+        Node *temp = root->left;
+        delete root;
+    }
+    // If both children exist
+    else
+    {
+        Node *succParent = root->right;
+        // Find successor
+        Node *succ = root->right;
+        while (succ->left != NULL)
+        {
+            succParent = succ;
+            succ = succ->left;
+        }
+        // Delete successor. Since successor is always left child of its parent
+        // we can safely make successor's right child as left of its parent.
+        succParent->left = succ->right;
+        // Copy Successor Data to root
+        root->data = succ->data;
+        // Delete Successor and return root
+        delete succ;
+    }
+}
+
+bool LinkedBST::search(int userData)
+{
+    return find(root, userData);
 }
 
 //Traversal
-//pre
+
 void LinkedBST::preorderTraversal()
 {
     traverse(root, PreTV);
 }
 
-//post
 void LinkedBST::postorderTraversal()
 {
     traverse(root, PostTV);
 }
 
-//in
 void LinkedBST::inorderTraversal()
 {
     traverse(root, InTV);
 }
 
 //MAX MIN
+
 int LinkedBST::max()
 {
     int max;
@@ -70,7 +125,6 @@ int LinkedBST::max()
         Node *temp = new Node();
         //initializing search node: 'temp' from root
         temp = root;
-
         //looping until end of BST
         while (temp != NULL)
         {
@@ -95,7 +149,6 @@ int LinkedBST::min()
         Node *temp = new Node();
         //initializing search node: 'temp' from root
         temp = root;
-
         //looping until end of BST
         while (temp != NULL)
         {
@@ -121,6 +174,7 @@ void LinkedBST::insert(Node *&subtree, Node *newNode)
             insert(subtree->left, newNode);
             //adding directly to left since left is empty
         }
+        //if space to add is null ie when adding point reached
         else
         {
             subtree->left = newNode;
@@ -155,7 +209,6 @@ bool LinkedBST::find(Node *&subtree, int targetKey)
         Node *temp = new Node();
         //initializing search node: 'temp' from root
         temp = root;
-
         //looping until end of BST
         while (temp != NULL)
         {
@@ -184,7 +237,9 @@ void LinkedBST::traverse(Node *root, Traversal Type)
 {
     //check if tree empty the return
     if (root == NULL)
+    {
         return;
+    }
 
     //when traverse type = Preorder
     if (Type == PreTV)

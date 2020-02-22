@@ -5,7 +5,7 @@ class BST
 {
 public:
     virtual void preorderTraversal() = 0;
-    virtual void add(int data) = 0;
+    virtual void addData(int data) = 0;
     virtual bool search(int data) = 0;
 
     virtual int min() = 0;
