@@ -103,20 +103,23 @@ int main()
                     \    
                      47
     */
-
+    std::cout << endl;
     if (a.search(3))
     {
         std::cout << "\nsearched data 3 is in the BST." << endl;
     }
+    
+    std::cout << endl;
     a.preorderTraversal();
     a.inorderTraversal();
-
+    
+    std::cout << endl;
     std::cout << "The maximum value in the tree is " << a.max() << endl;
     std::cout << "The minimum value in the tree is " << a.min() << endl;
-
+    
+    std::cout << endl;
     a.deleteData(11);
     a.preorderTraversal();
-    
     a.deleteData(23);
     a.inorderTraversal();
     std::cout << endl;
